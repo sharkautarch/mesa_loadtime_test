@@ -2,6 +2,6 @@ Dependencies: [bash](https://archlinux.org/packages/core/x86_64/bash/), [clang](
 
 Usage: `./time_lib_load.sh |& tee mesa_load_timing.log`
 
-Runs `LD_DEBUG=all vkcube &` in the background, while repeatedly printing out the elapsed time, in microseconds. 
+Runs `LD_DEBUG=all vkcube` in the background, while repeatedly printing out the elapsed time, in microseconds. 
 
 Note: This script leverages the ability to create custom bash builtins in order to use cpu pause/yield. This is used in the timing loop as a low-overhead way to slightly reduce cpu usage.

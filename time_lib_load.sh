@@ -34,9 +34,16 @@ time_start_seconds=${t::10}
 time_start_microseconds=${time_start:11:6}
 unset time_start
 
-bIsDone=0
-env LD_DEBUG=all vkcube && let bIsDone bIsDone=1 &
-while [[ $bIsDone == 0 ]] 
+mkdir -vp /tmp/time_lib_load/
+
+if [ -e /tmp/time_lib_load/done ]; then
+	rm /tmp/time_lib_load/done
+fi
+
+export bIsDone=0
+env LD_DEBUG=all vkcube && touch /tmp/time_lib_load/done &
+pid=$?
+while [[ ! -e /tmp/time_lib_load/done ]]
 do
 	t2_microseconds=${EPOCHREALTIME:11:6}
 	t2_seconds=${EPOCHREALTIME::10}
